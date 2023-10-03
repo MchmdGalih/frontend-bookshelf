@@ -49,6 +49,11 @@ header {
   outline: none;
   border: 2px solid #a6f6ff;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
 .overlay {
   position: absolute;
   top: 50%;
