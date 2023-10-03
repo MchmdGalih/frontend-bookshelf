@@ -190,6 +190,10 @@ form {
     gap: 5px;
     height: 100px;
   }
+
+  .form-container {
+    width: 80%;
+  }
   #book-result {
     display: flex;
     flex-direction: column;
