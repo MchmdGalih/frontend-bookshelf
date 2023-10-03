@@ -135,7 +135,7 @@ function makeBooks(book) {
     }).then((willDelete) => {
       if (willDelete) {
         removeBook(book.id);
-        swal("Berhasil buku tealh dihapus!", {
+        swal("Berhasil buku telah dihapus!", {
           icon: "success",
         });
       } else {
