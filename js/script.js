@@ -72,7 +72,7 @@ function addBook() {
   let id = +new Date();
   const title = document.getElementById("inputBookTitle").value;
   const author = document.getElementById("inputBookAuthor").value;
-  const year = document.getElementById("inputBookYear").value;
+  const year = Number(document.getElementById("inputBookYear").value);
   const isCompleted = document.getElementById("select").value;
 
   const convert = convertIsCompletedToBoolean(isCompleted);
