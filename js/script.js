@@ -82,9 +82,9 @@ function addBook() {
   books.push(booksObject);
   document.dispatchEvent(new Event(RENDER_EVENT));
   notificationAdd();
-
   saveData();
 }
+
 function convertIsCompletedToBoolean(str) {
   if (str === "completed") return true;
   return false;
@@ -94,6 +94,7 @@ function convertIsCompletedToString(text) {
   if (text) return "completed";
   return "uncompleted";
 }
+
 function generateBookObject(id, title, author, year, isCompleted) {
   return {
     id,
@@ -124,7 +125,24 @@ function makeBooks(book) {
   deletedButton.classList.add("btn-card", "danger-btn");
   deletedButton.innerText = "Hapus";
 
-  deletedButton.addEventListener("click", () => removeBook(book.id));
+  deletedButton.addEventListener("click", () => {
+    swal({
+      title: "Apakah anda ingin mengahapus buku ini?",
+      text: "Buku ini akan benar-benar di hapus.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        removeBook(book.id);
+        swal("Berhasil buku tealh dihapus!", {
+          icon: "success",
+        });
+      } else {
+        swal("Buku gagal di hapus!");
+      }
+    });
+  });
 
   const div = document.createElement("div");
   div.classList.add("btn-status");
@@ -187,15 +205,8 @@ function removeBook(id) {
 
   books.splice(bookTarget, 1);
   document.dispatchEvent(new Event(RENDER_EVENT));
-  notificationRemove();
-  saveData();
-}
 
-function notificationRemove() {
-  swal({
-    title: "Berhasil menghapus buku!",
-    icon: "success",
-  });
+  saveData();
 }
 
 function notificationAdd() {
