@@ -81,6 +81,7 @@ function addBook() {
 
   books.push(booksObject);
   document.dispatchEvent(new Event(RENDER_EVENT));
+  notificationAdd();
 
   saveData();
 }
@@ -186,5 +187,20 @@ function removeBook(id) {
 
   books.splice(bookTarget, 1);
   document.dispatchEvent(new Event(RENDER_EVENT));
+  notificationRemove();
   saveData();
+}
+
+function notificationRemove() {
+  swal({
+    title: "Berhasil menghapus buku!",
+    icon: "success",
+  });
+}
+
+function notificationAdd() {
+  swal({
+    title: "Berhasil menambahkan buku!",
+    icon: "success",
+  });
 }
